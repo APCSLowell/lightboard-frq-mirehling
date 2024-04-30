@@ -1,21 +1,57 @@
-# 2019  AP Computer Science A FRQ #4 LightBoard
-Instructions:  https://apstudents.collegeboard.org/ap/pdf/ap19-frq-computer-science-a.pdf 
+public class LightBoard
+{
+/** The lights on the board, where true represents on and false represents
+* off.
+*/
+private boolean[][] lights;
+/** Constructs a LightBoard object having numRows rows and numCols columns.
+* Precondition: numRows &gt; 0, numCols &gt; 0
+* Postcondition: each light has a 40% probability of being set to on.
+*/
+public LightBoard(int numRows, int numCols)
+{
+/* to be implemented in part (a) */
+}
+/** Evaluates a light in row index row and column index col and returns a
+* status as described in part (b).
+* Precondition: row and col are valid indexes in lights.
+*/
+public boolean evaluateLight(int row, int col)
+{
+/* to be implemented in part (b) */
+}
+// There may be additional instance variables, constructors, and methods not
+// shown.
+}
 
-Quick Reference Guide:  https://apstudents.collegeboard.org/ap/pdf/ap-computer-science-a-java-quick-reference.pdf 
+public LightBoard(int numRows, int numCols)
+{
+    lights = new boolean[numRows][numCols];
 
-The correct answer outputs should have a pattern of 7 rows and 5 columns of stars and dots **_similar_** to that shown and should match the last line exactly.   
+    for(int r = 0; r < lights.length; r++)
+        for(int c = 0; c < lights[0].length; c++)
+            if(Math.random() <= 0.4)
+                lights[r][c] = true;
+}
 
- 
+public boolean evaluateLight(int row, int col)
+{
+    int onInColumn = 0;
 
-```
-**.*.
-***..
-.**..
-****.
-**...
-.....
-....*
+    for(int r = 0; r < lights.length; r++)
+        if(lights[r][col])
+            onInColumn++;
 
+    if(lights[row][col])
+    {
+        if(onInColumn % 2 == 0)
+            return false;
+    }
+    else
+    {
+        if(onInColumn % 3 == 0)
+            return true;
+    }
 
-false true false true
-```
+    return lights[row][col];
+}
